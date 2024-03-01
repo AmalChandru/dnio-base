@@ -1652,7 +1652,7 @@ async function doRoundMathAPI(req, res, oldNewData) {
 		const status = await model.findOneAndUpdate(
 			{ _id: id, '_metadata.version.document': prevVersion },
 			{ $set: updateData, $inc: { '_metadata.version.document': 1 } },
-			{ new: true }
+			{ returnDocument: 'after' }
 		);
 		oldNewData.new = status.toObject();
 		return status;
